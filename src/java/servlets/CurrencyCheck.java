@@ -68,8 +68,7 @@ public class CurrencyCheck extends HttpServlet {
             out.println("<h4>date: " + device.getDataKsiegowania() + "</h1>");
             out.println("<h4>date: " + dateL + "</h1>");
             out.println("<h4>koszt USD: " + device.getKosztUsd() + "</h1>");
-            out.println("<h1>koszt PLN " + device.getKosztPln() + "</h1>");
-            out.println("<h1>getCurrency " + curr.getCurrency() + "</h1>");
+            out.println("<h4>koszt PLN " + device.getKosztPln() + "</h1>");
             out.println(buttonReback());
             out.println("</body>");
             out.println("</html>");

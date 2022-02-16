@@ -116,7 +116,7 @@ public class Device implements Serializable {
     }
 
     public void setKosztUsd(double costUsd) {
-        this.costUsd = costUsd;
+        this.costUsd = Math.round(costUsd * 100.0) / 100.0;
     }
 
     public double getKosztPln() {
@@ -124,7 +124,7 @@ public class Device implements Serializable {
     }
 
     public void setKosztPln(double costPln) {
-        this.costPln = costPln;
+        this.costPln =  Math.round(costPln * 100.0) / 100.0;;
     }
 
     @Override

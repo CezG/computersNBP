@@ -28,12 +28,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "KOMPUTER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Komputer.findAll", query = "SELECT k FROM Komputer k"),
-    @NamedQuery(name = "Komputer.findById", query = "SELECT k FROM Komputer k WHERE k.id = :id"),
-    @NamedQuery(name = "Komputer.findByDataKsiegowania", query = "SELECT k FROM Komputer k WHERE k.dataKsiegowania = :dataKsiegowania"),
-    @NamedQuery(name = "Komputer.findByKosztUsd", query = "SELECT k FROM Komputer k WHERE k.kosztUsd = :kosztUsd"),
-    @NamedQuery(name = "Komputer.findByKosztPln", query = "SELECT k FROM Komputer k WHERE k.kosztPln = :kosztPln")})
-public class Komputer implements Serializable {
+    @NamedQuery(name = "Device.findAll", query = "SELECT k FROM Device k"),
+    @NamedQuery(name = "Device.findById", query = "SELECT k FROM Device k WHERE k.id = :id"),
+    @NamedQuery(name = "Device.findByDate", query = "SELECT k FROM Device k WHERE k.date = :date"),
+    @NamedQuery(name = "Device.findByCostUsd", query = "SELECT k FROM Device k WHERE k.costUsd = :costUsd"),
+    @NamedQuery(name = "Device.findByCostPln", query = "SELECT k FROM Device k WHERE k.costPln = :costPln")})
+public class Device implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,39 +41,43 @@ public class Komputer implements Serializable {
     @NotNull
     @Column(name = "ID")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 32700)
     @Column(name = "NAZWA")
-    private String nazwa;
+    private String name;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATA_KSIEGOWANIA")
     @Temporal(TemporalType.DATE)
-    private Date dataKsiegowania;
+    private Date date;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "KOSZT_USD")
-    private double kosztUsd;
+    private double costUsd;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "KOSZT_PLN")
-    private double kosztPln;
+    private double costPln;
 
-    public Komputer() {
+    public Device() {
     }
 
-    public Komputer(Integer id) {
+    public Device(Integer id) {
         this.id = id;
     }
 
-    public Komputer(Integer id, String nazwa, Date dataKsiegowania, double kosztUsd, double kosztPln) {
+    public Device(Integer id, String name, Date date, double costUsd, double costPln) {
         this.id = id;
-        this.nazwa = nazwa;
-        this.dataKsiegowania = dataKsiegowania;
-        this.kosztUsd = kosztUsd;
-        this.kosztPln = kosztPln;
+        this.name = name;
+        this.date = date;
+        this.costUsd = costUsd;
+        this.costPln = costPln;
     }
 
     public Integer getId() {
@@ -85,35 +89,35 @@ public class Komputer implements Serializable {
     }
 
     public String getNazwa() {
-        return nazwa;
+        return name;
     }
 
-    public void setNazwa(String nazwa) {
-        this.nazwa = nazwa;
+    public void setNazwa(String name) {
+        this.name = name;
     }
 
     public Date getDataKsiegowania() {
-        return dataKsiegowania;
+        return date;
     }
 
-    public void setDataKsiegowania(Date dataKsiegowania) {
-        this.dataKsiegowania = dataKsiegowania;
+    public void setDataKsiegowania(Date date) {
+        this.date = date;
     }
 
     public double getKosztUsd() {
-        return kosztUsd;
+        return costUsd;
     }
 
-    public void setKosztUsd(double kosztUsd) {
-        this.kosztUsd = kosztUsd;
+    public void setKosztUsd(double costUsd) {
+        this.costUsd = costUsd;
     }
 
     public double getKosztPln() {
-        return kosztPln;
+        return costPln;
     }
 
-    public void setKosztPln(double kosztPln) {
-        this.kosztPln = kosztPln;
+    public void setKosztPln(double costPln) {
+        this.costPln = costPln;
     }
 
     @Override
@@ -126,10 +130,10 @@ public class Komputer implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Komputer)) {
+        if (!(object instanceof Device)) {
             return false;
         }
-        Komputer other = (Komputer) object;
+        Device other = (Device) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -138,7 +142,7 @@ public class Komputer implements Serializable {
 
     @Override
     public String toString() {
-        return "computer.Komputer[ id=" + id + " ]";
+        return "Komputer[ id=" + id + " ]";
     }
-    
+
 }

@@ -3,10 +3,10 @@ package domain;
 import java.util.Date;
 
 public class Rate {
+
     private Date effectiveDate;
     private double bid;
     private double ask;
-
 
     public Date getEffectiveDate() {
         return effectiveDate;

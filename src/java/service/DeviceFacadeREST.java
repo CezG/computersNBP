@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package service;
 
 import domain.Device;
@@ -19,10 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author cezar
- */
 @Stateless
 @Path("domain.computer")
 public class DeviceFacadeREST extends AbstractFacade<Device> {
@@ -86,5 +78,5 @@ public class DeviceFacadeREST extends AbstractFacade<Device> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

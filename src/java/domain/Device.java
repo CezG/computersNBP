@@ -41,25 +41,25 @@ public class Device implements Serializable {
     @NotNull
     @Column(name = "ID")
     private Integer id;
-    
+
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 32700)
     @Column(name = "NAZWA")
     private String name;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATA_KSIEGOWANIA")
     @Temporal(TemporalType.DATE)
     private Date date;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "KOSZT_USD")
     private double costUsd;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "KOSZT_PLN")
@@ -71,7 +71,8 @@ public class Device implements Serializable {
     public Device(Integer id) {
         this.id = id;
     }
-       public Device(Integer id, String name, Date date, double costUsd) {
+
+    public Device(Integer id, String name, Date date, double costUsd) {
         this.id = id;
         this.name = name;
         this.date = date;

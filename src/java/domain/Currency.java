@@ -3,11 +3,10 @@ package domain;
 import java.util.List;
 
 public class Currency {
+
     private String currency;
     private String code;
     private List<Rate> rates;
-
-
 
     public String getCurrency() {
         return currency;
@@ -33,7 +32,8 @@ public class Currency {
         this.rates = rates;
     }
 
-    public double getSellingRate() {return rates.get(0).getAsk();}
-
+    public double getSellingRate() {
+        return rates.get(0).getAsk();
+    }
 
 }

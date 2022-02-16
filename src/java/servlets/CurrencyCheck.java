@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import domain.Currency;
@@ -10,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,24 +35,25 @@ public class CurrencyCheck extends HttpServlet {
         String date = request.getParameter("date");
         double costUsd = Double.parseDouble(request.getParameter("costUsd"));
 
+        LocalDate dateL = LocalDate.parse(date);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         Date deviceDate = null;
         try {
-            deviceDate = sdf.parse(date);
+            Date sdfDate = sdf.parse(date);
+            deviceDate = sdf.parse(sdf.format(sdfDate));
         } catch (ParseException ex) {
             Logger.getLogger(CurrencyCheck.class.getName()).log(Level.SEVERE, null, ex);
         }
         CurrencyResources client = new CurrencyResources();
-        Currency currency = client.getCurrency(deviceDate);
-//        double costPln = costUsd * currency.getSellingRate();
-        Device device = new Device(id, name, deviceDate, costUsd);
-//        printDeviceCostPln(response, currency, device);
-        printDeviceCostPln(response, currency, device);
-        out.println(buttonReback());
+        Currency currency = client.getCurrency(date);
+        double costPln = costUsd * currency.getSellingRate();
+        Device device = new Device(id, name, deviceDate, costUsd, costPln);  //deviceDate
+        printDeviceCostPln(response, currency, device, date, dateL);
+
     }
 
-    protected void printDeviceCostPln(HttpServletResponse response, Currency request, Device device)
+    protected void printDeviceCostPln(HttpServletResponse response, Currency curr, Device device, String date, LocalDate dateL)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -68,9 +66,11 @@ public class CurrencyCheck extends HttpServlet {
             out.println("<h4>id : " + device.getId() + "</h1>");
             out.println("<h4>Nazwa: " + device.getNazwa() + "</h1>");
             out.println("<h4>date: " + device.getDataKsiegowania() + "</h1>");
-            out.println("<h4>cost USD: " + device.getKosztUsd() + "</h1>");
-//            out.println("<h1>cost PLN " + device.getKosztPln() + "</h1>");
-//            out.println("<h1>getCurrency " + request.getCurrency() + "</h1>");
+            out.println("<h4>date: " + dateL + "</h1>");
+            out.println("<h4>koszt USD: " + device.getKosztUsd() + "</h1>");
+            out.println("<h1>koszt PLN " + device.getKosztPln() + "</h1>");
+            out.println("<h1>getCurrency " + curr.getCurrency() + "</h1>");
+            out.println(buttonReback());
             out.println("</body>");
             out.println("</html>");
         }

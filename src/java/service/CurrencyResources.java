@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.util.Date;
-//import java.time.LocalDate;
 
 @Path("/nbp")
 public class CurrencyResources {
@@ -20,13 +19,14 @@ public class CurrencyResources {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Currency getCurrency(Date date) {
+    public Currency getCurrency(String date) {
         Response response = ClientBuilder.newClient()
-                .target(URL + date + json )
+                .target(URL + date + json)
                 .request(MediaType.APPLICATION_JSON).get();
 
-        if (response.getStatus() == 200)
+        if (response.getStatus() == 200) {
             return response.readEntity(Currency.class);
+        }
         return null;
     }
 }

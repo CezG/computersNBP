@@ -1,18 +1,18 @@
 package domain;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Rate {
-    private LocalDate effectiveDate;
+    private Date effectiveDate;
     private double bid;
     private double ask;
 
 
-    public LocalDate getEffectiveDate() {
+    public Date getEffectiveDate() {
         return effectiveDate;
     }
 
-    public void setEffectiveDate(LocalDate effectiveDate) {
+    public void setEffectiveDate(Date effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
 

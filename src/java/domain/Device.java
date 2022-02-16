@@ -71,6 +71,12 @@ public class Device implements Serializable {
     public Device(Integer id) {
         this.id = id;
     }
+       public Device(Integer id, String name, Date date, double costUsd) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.costUsd = costUsd;
+    }
 
     public Device(Integer id, String name, Date date, double costUsd, double costPln) {
         this.id = id;

@@ -16,6 +16,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,6 +42,7 @@ public class Device implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Basic(optional = false)
@@ -76,15 +79,15 @@ public class Device implements Serializable {
         this.id = id;
         this.name = name;
         this.date = date;
-        this.costUsd = costUsd;
+        this.costUsd = Math.round(costUsd * 100.0) / 100.0;
     }
 
     public Device(Integer id, String name, Date date, double costUsd, double costPln) {
         this.id = id;
         this.name = name;
         this.date = date;
-        this.costUsd = costUsd;
-        this.costPln = costPln;
+        this.costUsd = Math.round(costUsd * 100.0) / 100.0;
+        this.costPln = Math.round(costPln * 100.0) / 100.0;
     }
 
     public Integer getId() {
@@ -124,7 +127,7 @@ public class Device implements Serializable {
     }
 
     public void setKosztPln(double costPln) {
-        this.costPln =  Math.round(costPln * 100.0) / 100.0;;
+        this.costPln =  Math.round(costPln * 100.0) / 100.0;
     }
 
     @Override

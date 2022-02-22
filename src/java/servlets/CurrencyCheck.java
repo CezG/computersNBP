@@ -48,7 +48,7 @@ public class CurrencyCheck extends HttpServlet {
         CurrencyResources client = new CurrencyResources();
         Currency currency = client.getCurrency(date);
         double costPln = costUsd * currency.getSellingRate();
-        Device device = new Device(id, name, deviceDate, costUsd, costPln);  //deviceDate
+        Device device = new Device(id, name, deviceDate, costUsd, costPln);  
         printDeviceCostPln(response, currency, device, date, dateL);
 
     }
@@ -66,7 +66,7 @@ public class CurrencyCheck extends HttpServlet {
             out.println("<h4>id : " + device.getId() + "</h1>");
             out.println("<h4>Nazwa: " + device.getNazwa() + "</h1>");
             out.println("<h4>date: " + device.getDataKsiegowania() + "</h1>");
-            out.println("<h4>date: " + dateL + "</h1>");
+            out.println("<h4>date: " + dateL + "</h4>");
             out.println("<h4>koszt USD: " + device.getKosztUsd() + "</h1>");
             out.println("<h4>koszt PLN " + device.getKosztPln() + "</h1>");
             out.println(buttonReback());
@@ -76,6 +76,6 @@ public class CurrencyCheck extends HttpServlet {
     }
 
     private String buttonReback() {
-        return "<br/> <br/><button onclick=\"location.href='/index.jsp';\" type=\"button\"> Reback</button> ";
+        return "<br/> <br/><button onclick=\"location.href='/computers';\" type=\"button\"> Reback</button> ";
     }
 }

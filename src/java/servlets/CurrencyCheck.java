@@ -63,12 +63,12 @@ public class CurrencyCheck extends HttpServlet {
             out.println("<title>Servlet CurrencyCheck</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h4>id : " + device.getId() + "</h1>");
-            out.println("<h4>Nazwa: " + device.getNazwa() + "</h1>");
-            out.println("<h4>date: " + device.getDataKsiegowania() + "</h1>");
+            out.println("<h4>id : " + device.getId() + "</h4>");
+            out.println("<h4>Nazwa: " + device.getNazwa() + "</h4>");
+            out.println("<h4>date: " + device.getDataKsiegowania() + "</h4>");
             out.println("<h4>date: " + dateL + "</h4>");
-            out.println("<h4>koszt USD: " + device.getKosztUsd() + "</h1>");
-            out.println("<h4>koszt PLN " + device.getKosztPln() + "</h1>");
+            out.println("<h4>koszt USD: " + device.getKosztUsd() + "</h4>");
+            out.println("<h4>koszt PLN " + device.getKosztPln() + "</h4>");
             out.println(buttonReback());
             out.println("</body>");
             out.println("</html>");

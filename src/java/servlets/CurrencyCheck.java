@@ -48,12 +48,13 @@ public class CurrencyCheck extends HttpServlet {
         CurrencyResources client = new CurrencyResources();
         Currency currency = client.getCurrency(date);
         double costPln = costUsd * currency.getSellingRate();
-        Device device = new Device(id, name, deviceDate, costUsd, costPln);  
-        printDeviceCostPln(response, currency, device, date, dateL);
+        Device device = new Device(id, name, deviceDate, costUsd, costPln);
+
+        printDeviceCostPln(response, currency, device, dateL);
 
     }
 
-    protected void printDeviceCostPln(HttpServletResponse response, Currency curr, Device device, String date, LocalDate dateL)
+    protected void printDeviceCostPln(HttpServletResponse response, Currency curr, Device device, LocalDate dateL)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

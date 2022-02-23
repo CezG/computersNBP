@@ -1,6 +1,7 @@
 package service;
 
 import domain.Device;
+import java.text.ParseException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,6 +52,15 @@ public class DeviceFacadeREST extends AbstractFacade<Device> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Device find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+
+    @GET
+    @Path("/date/{date}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Override
+    public List<Device> findDate(@PathParam("date") String date) throws ParseException {
+        return super.findDate(date);
+
     }
 
     @GET

@@ -1,5 +1,9 @@
 package service;
 
+import domain.Device;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
@@ -38,6 +42,16 @@ public abstract class AbstractFacade<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
 
+    public List<Device> findDate(String date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date sdfDate = sdf.parse(date);
+        Date deviceDate = sdf.parse(sdf.format(sdfDate));
+        return getEntityManager()
+                .createNamedQuery("Device.findByDate", Device.class)
+                .setParameter("date", deviceDate)
+                .getResultList();
+    }
+
     public List<T> findRange(int[] range) {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
@@ -48,7 +62,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public int count() {
-       CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         Query q = getEntityManager().createQuery(cq);

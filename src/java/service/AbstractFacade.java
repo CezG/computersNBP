@@ -52,6 +52,13 @@ public abstract class AbstractFacade<T> {
                 .getResultList();
     }
 
+    public List<Device> findName(String name) {
+        return getEntityManager()
+                .createNamedQuery("Device.findByName", Device.class)
+                .setParameter("name", "%" + name + "%")
+                .getResultList();
+    }
+
     public List<T> findRange(int[] range) {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));

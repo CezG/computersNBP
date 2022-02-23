@@ -34,7 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Device.findById", query = "SELECT k FROM Device k WHERE k.id = :id"),
     @NamedQuery(name = "Device.findByDate", query = "SELECT k FROM Device k WHERE k.date = :date"),
     @NamedQuery(name = "Device.findByCostUsd", query = "SELECT k FROM Device k WHERE k.costUsd = :costUsd"),
-    @NamedQuery(name = "Device.findByCostPln", query = "SELECT k FROM Device k WHERE k.costPln = :costPln")})
+    @NamedQuery(name = "Device.findByCostPln", query = "SELECT k FROM Device k WHERE k.costPln = :costPln"),
+    @NamedQuery(name = "Device.findByName", query = "SELECT k FROM Device k WHERE k.name LIKE :name")})
+
 public class Device implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -127,7 +129,7 @@ public class Device implements Serializable {
     }
 
     public void setKosztPln(double costPln) {
-        this.costPln =  Math.round(costPln * 100.0) / 100.0;
+        this.costPln = Math.round(costPln * 100.0) / 100.0;
     }
 
     @Override

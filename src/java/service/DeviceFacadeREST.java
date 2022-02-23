@@ -60,7 +60,13 @@ public class DeviceFacadeREST extends AbstractFacade<Device> {
     @Override
     public List<Device> findDate(@PathParam("date") String date) throws ParseException {
         return super.findDate(date);
+    }
 
+    @GET
+    @Path("/name/{name}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Device> findName(@PathParam("name") String name) {
+        return super.findName(name);
     }
 
     @GET
